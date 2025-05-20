@@ -10,28 +10,18 @@ public class Main {
         String S = br.readLine();
 
         int answer = 0;
-        int I_cnt = N+1;
-        int O_cnt = N;
+        int cnt = 0;
+        for(int i=1;i<M-1;i++) {
+            if(S.charAt(i-1) == 'I' && S.charAt(i) == 'O' && S.charAt(i+1) == 'I') {
+                cnt++;
 
-        int total = I_cnt + O_cnt;
-        String str = "";
-
-        for(int i=0;i<=M-total;i++) {
-            if(S.charAt(i) == 'I') {
-                str = S.substring(i, i+total);
-
-                int x = 0;
-                int y = 0;
-                for(int j=0;j<str.length();j++) {
-                    if(j%2 == 0 && str.charAt(j) == 'I') {
-                        x++;
-                    } else if(j%2 != 0 && str.charAt(j) == 'O') {
-                        y++;
-                    }
-                }
-                if(x == I_cnt && y == O_cnt) {
+                if(cnt == N) {
                     answer++;
+                    cnt--;
                 }
+                i++;
+            } else  {
+                cnt = 0;
             }
         }
         System.out.println(answer);
