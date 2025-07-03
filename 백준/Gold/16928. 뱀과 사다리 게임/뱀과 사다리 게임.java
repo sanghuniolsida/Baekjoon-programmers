@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
     static int[] board;
     static boolean[] visited;
+    static Queue<int[]> q = new LinkedList<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -23,10 +24,13 @@ public class Main {
             board[a] = b;
         }
 
-        Queue<int[]> q = new LinkedList<>();
         q.add(new int[]{1,0}); // 처음에 들어갈 값은 시작 위치와 카운트
         visited[1] = true;
 
+        bfs();
+    }
+
+    static void bfs() {
         while(!q.isEmpty()) {
             int[] cur = q.poll();
             int x = cur[0];
